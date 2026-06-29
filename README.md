@@ -1,3 +1,6 @@
+<img width="2554" height="1265" alt="BeaconOS Social Preview" src="https://github.com/user-attachments/assets/a8895da0-934d-4ac2-bcbe-8a87a1ab1a42" />
+
+
 # BeaconOS
 
 > The operating system built for Minecraft server hosting.
