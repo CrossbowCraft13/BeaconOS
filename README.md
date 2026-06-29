@@ -56,6 +56,7 @@ Contributions, ideas, and feedback are welcome.
 - Beginner Friendly
 - Enterprise Ready
 - Community Driven
+- Needs to stay 100% local and private.
 
 ---
 
