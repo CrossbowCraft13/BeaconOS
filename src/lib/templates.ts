@@ -1,15 +1,20 @@
 import { BeaconConfig } from "../types/config";
+import {
+  VERSION,
+  DEFAULT_PORT,
+  DEFAULT_MAX_PLAYERS
+} from "./constants";
 
 export function createConfig(name: string): BeaconConfig {
   return {
     name,
-    version: "0.2-alpha",
+    version: VERSION,
     createdBy: "BeaconOS",
     apiVersion: 1,
 
     server: {
-      port: 25565,
-      maxPlayers: 20
+      port: DEFAULT_PORT,
+      maxPlayers: DEFAULT_MAX_PLAYERS
     },
 
     paths: {
@@ -23,13 +28,22 @@ export function createConfig(name: string): BeaconConfig {
 export function createReadme(name: string): string {
   return `# ${name}
 
-Created with BeaconOS v0.2 Alpha
+Created with BeaconOS ${VERSION}
 
-## Coming Soon
+## Directory Structure
 
-- Server Start
-- Server Stop
-- Server Status
-- Package Manager
+plugins/   - Server plugins
+worlds/    - World saves
+logs/      - Server logs
+config/    - Configuration files
+cache/     - Temporary cache
+
+## Planned Commands
+
+beaconos start
+beaconos stop
+beaconos status
+
+These commands will become available in future BeaconOS releases.
 `;
 }
