@@ -36,7 +36,7 @@ export function createServer(name: string) {
 
   writeFile(
     join(name, "beacon.yml"),
-    JSON.stringify(config, null, 2)
+    config
   );
 
   writeFile(
