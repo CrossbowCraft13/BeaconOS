@@ -1,7 +1,7 @@
 {
   "name": "beaconos",
   "version": "0.2.0-alpha",
-  "description": "BeaconOS CLI for creating and managing Minecraft server projects."
+  "description": "BeaconOS CLI for creating and managing Minecraft server projects.",
   "author": "CrossbowCraft13",
   "license": "MIT",
   "homepage": "https://github.com/CrossbowCraft13/BeaconOS",
