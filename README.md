@@ -3,69 +3,159 @@
 
 # BeaconOS
 
-> The operating system built for Minecraft server hosting.
+A modern command-line toolkit for creating and managing Minecraft server projects.
 
-BeaconOS is an open-source Linux distribution designed from the ground up to simplify, optimize, and modernize Minecraft server management.
-
-Whether you're running a single vanilla world or a network of hundreds of Paper, Fabric, Forge, or Velocity servers, BeaconOS provides the tools to deploy, monitor, update, and manage them effortlessly.
+> **Current Release:** v0.2.0 Alpha
 
 ---
 
-## Vision
+## About
 
-Minecraft server hosting should not require Linux expertise.
+BeaconOS is an open-source project focused on simplifying Minecraft server management.
 
-BeaconOS aims to become the easiest, fastest, and most reliable operating system dedicated entirely to Minecraft infrastructure.
+The long-term goal is to provide an easy-to-use operating system and toolkit capable of:
 
----
-
-## Planned Features
-
-- Modern web dashboard
-- One-click server deployment
-- Support for Paper, Purpur, Fabric, Forge, NeoForge, and Vanilla
-- Plugin and mod manager
-- Automatic backups
-- Resource monitoring
-- Docker support
-- Multi-server management
-- Reverse proxy configuration
-- Automatic SSL
-- User permissions
-- Built-in firewall presets
-- Performance optimization
-- Scheduled tasks
-- REST API
-- Cluster support
+- Creating Minecraft server projects
+- Managing multiple servers
+- Installing plugins and packages
+- Monitoring server status
+- Providing a web dashboard
+- Becoming a complete server management platform
 
 ---
 
-## 🚧 Project Status
+## Features
 
-**Current Version:** v0.1.0-alpha
+### v0.2.0 Alpha
 
-BeaconOS is an open-source operating system and management platform focused on simplifying Minecraft server hosting and administration.
-
-### Current Features
-
-- ✅ Interactive CLI
-- ✅ Configuration System
-- ✅ Installation Framework
-- 🚧 Server Creation (In Progress)
-- 🚧 Web Dashboard (Planned)
+- Create new BeaconOS server projects
+- Automatically generate project folders
+- Generate a default configuration
+- Generate a project README
+- Modular command architecture
+- Version and Help commands
 
 ---
 
-## Project Goals
+## Installation
 
-- Open Source
-- Beginner Friendly
-- Enterprise Ready
-- Community Driven
-- Needs to stay 100% local and private.
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/BeaconOS.git
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Build the project:
+
+```bash
+npm run build
+```
+
+---
+
+## Usage
+
+Display help:
+
+```bash
+node dist/index.js help
+```
+
+Display version:
+
+```bash
+node dist/index.js version
+```
+
+Create a new server:
+
+```bash
+node dist/index.js create MyServer
+```
+
+---
+
+## Example Output
+
+```
+Creating BeaconOS server...
+
+✓ Folder created
+✓ Configuration written
+✓ README generated
+✓ Server ready!
+```
+
+Generated project:
+
+```
+MyServer/
+├── beacon.yml
+├── README.md
+├── plugins/
+├── worlds/
+├── logs/
+├── config/
+└── cache/
+```
+
+---
+
+## Project Structure
+
+```
+BeaconOS/
+├── src/
+│   ├── commands/
+│   ├── lib/
+│   ├── types/
+│   └── index.ts
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+---
+
+## Roadmap
+
+| Version | Milestone |
+|---------|-----------|
+| ✅ v0.1 Alpha | CLI Foundation |
+| ✅ v0.2 Alpha | Server Creation |
+| ⏳ v0.3 Alpha | Server Management |
+| ⏳ v0.4 Alpha | Package Manager |
+| ⏳ v0.5 Beta | Web Dashboard |
+| ⏳ v1.0 Stable | Production Release |
+
+---
+
+## Technologies
+
+- TypeScript
+- Node.js
+- npm
+
+---
+
+## Contributing
+
+BeaconOS is currently in active alpha development.
+
+Bug reports, feature suggestions, and pull requests are welcome.
 
 ---
 
 ## License
 
 MIT License
+
+---
+
+Built with ❤️ using TypeScript.
