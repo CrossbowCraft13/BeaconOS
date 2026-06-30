@@ -22,7 +22,7 @@ export function createServer(name: string) {
     return;
   }
 
-  console.log("Creating BeaconOS server...\n");
+  info("Creating BeaconOS server...");
 
   createDirectory(name);
 
@@ -44,8 +44,8 @@ export function createServer(name: string) {
     createReadme(name)
   );
 
-  console.log("✓ Folder created");
-  console.log("✓ Configuration written");
-  console.log("✓ README generated");
-  console.log("✓ Server ready!");
+ success("Folder created");
+ success("Configuration written");
+ success("README generated");
+ success("Server ready!");
 }
