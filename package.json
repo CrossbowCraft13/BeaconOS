@@ -1,7 +1,7 @@
 {
   "name": "beaconos",
   "version": "0.2.0-alpha",
-  "description": "BeaconOS CLI for creating and managing Minecraft server projects.",
+  "description": "An open-source operating system and management platform for Minecraft servers.",
   "author": "CrossbowCraft13",
   "license": "MIT",
   "homepage": "https://github.com/CrossbowCraft13/BeaconOS",
@@ -18,31 +18,21 @@
     "minecraft-server",
     "cli",
     "beaconos",
-    "typescript",
-    "open-source"
+    "typescript"
   ],
   "type": "commonjs",
   "main": "dist/index.js",
   "bin": {
     "beaconos": "dist/index.js"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsc",
     "dev": "ts-node src/index.ts",
-    "start": "node dist/index.js",
-    "clean": "rm -rf dist",
-    "prepare": "npm run build"
+    "start": "node dist/index.js"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^24.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
-  },
-  "engines": {
-    "node": ">=20.0.0"
   }
 }
