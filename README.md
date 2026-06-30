@@ -40,13 +40,19 @@ BeaconOS aims to become the easiest, fastest, and most reliable operating system
 
 ---
 
-## Current Status
+## 🚧 Project Status
 
-🚧 Early Development
+**Current Version:** v0.1.0-alpha
 
-BeaconOS is currently in active development and is not yet ready for production use.
+BeaconOS is an open-source operating system and management platform focused on simplifying Minecraft server hosting and administration.
 
-Contributions, ideas, and feedback are welcome.
+### Current Features
+
+- ✅ Interactive CLI
+- ✅ Configuration System
+- ✅ Installation Framework
+- 🚧 Server Creation (In Progress)
+- 🚧 Web Dashboard (Planned)
 
 ---
 
