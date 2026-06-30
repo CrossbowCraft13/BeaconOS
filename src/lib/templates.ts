@@ -5,24 +5,21 @@ import {
   DEFAULT_MAX_PLAYERS
 } from "./constants";
 
-export function createConfig(name: string): BeaconConfig {
-  return {
-    name,
-    version: VERSION,
-    createdBy: "BeaconOS",
-    apiVersion: 1,
+export function createConfig(name: string): string {
+  return `name: ${name}
+version: ${VERSION}
+createdBy: BeaconOS
+apiVersion: 1
 
-    server: {
-      port: DEFAULT_PORT,
-      maxPlayers: DEFAULT_MAX_PLAYERS
-    },
+server:
+  port: ${DEFAULT_PORT}
+  maxPlayers: ${DEFAULT_MAX_PLAYERS}
 
-    paths: {
-      plugins: "plugins",
-      worlds: "worlds",
-      logs: "logs"
-    }
-  };
+paths:
+  plugins: plugins
+  worlds: worlds
+  logs: logs
+`;
 }
 
 export function createReadme(name: string): string {
