@@ -1,1 +1,4 @@
-
+# Test servers
+SurvivalServer/
+TestServer/
+*.log
