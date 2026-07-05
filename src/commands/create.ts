@@ -10,6 +10,11 @@ import {
   createReadme
 } from "../lib/templates";
 
+import {
+  info,
+  success
+} from "../lib/logger";
+
 export function createServer(name: string) {
 
   if (!name) {
@@ -44,8 +49,8 @@ export function createServer(name: string) {
     createReadme(name)
   );
 
- success("Folder created");
- success("Configuration written");
- success("README generated");
- success("Server ready!");
+  success("Folder created");
+  success("Configuration written");
+  success("README generated");
+  success("Server ready!");
 }

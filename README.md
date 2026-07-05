@@ -5,7 +5,7 @@
 
 A modern command-line toolkit for creating and managing Minecraft server projects.
 
-> **Current Release:** v0.2.0 Alpha
+> **Current Release:** v0.3.0 Alpha
 
 ---
 
@@ -26,7 +26,7 @@ The long-term goal is to provide an easy-to-use operating system and toolkit cap
 
 ## Features
 
-### v0.2.0 Alpha
+### v0.3.0 Alpha
 
 - Create new BeaconOS server projects
 - Automatically generate project folders
@@ -34,6 +34,7 @@ The long-term goal is to provide an easy-to-use operating system and toolkit cap
 - Generate a project README
 - Modular command architecture
 - Version and Help commands
+- Check server project status
 
 ---
 
@@ -71,6 +72,12 @@ Display version:
 
 ```bash
 node dist/index.js version
+```
+
+Check a server project:
+
+```bash
+node dist/index.js status MyServer
 ```
 
 Create a new server:
@@ -129,7 +136,7 @@ BeaconOS/
 |---------|-----------|
 | ✅ v0.1 Alpha | CLI Foundation |
 | ✅ v0.2 Alpha | Server Creation |
-| ⏳ v0.3 Alpha | Server Management |
+| ✅ v0.3 Alpha | Server Management |
 | ⏳ v0.4 Alpha | Package Manager |
 | ⏳ v0.5 Beta | Web Dashboard |
 | ⏳ v1.0 Stable | Production Release |

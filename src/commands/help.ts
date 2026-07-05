@@ -7,6 +7,8 @@ ${APP_NAME} ${VERSION}
 Commands
 
 create <name>    Create a new BeaconOS server
+status [path]    Check a BeaconOS server folder
+init             Initialize BeaconOS
 version          Show BeaconOS version
 help             Show this menu
 `);

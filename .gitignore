@@ -2,3 +2,7 @@
 SurvivalServer/
 TestServer/
 *.log
+
+# Node.js
+node_modules/
+dist/
