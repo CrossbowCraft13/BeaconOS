@@ -156,6 +156,9 @@ link_binary() {
     return 1
   fi
 
+  # Ensure the target file is executable (tsc creates files as 0644)
+  chmod +x "$source" 2>/dev/null || true
+
   info "Linking beaconos command globally…"
 
   # ── Strategy A: write to /usr/local/bin via sudo ──

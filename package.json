@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "prepare": "npm run build",
-    "build": "tsc && node scripts/copy-dashboard-assets.js",
+    "build": "tsc && chmod +x dist/index.js && node scripts/copy-dashboard-assets.js",
     "postbuild": "node -e \"var s=require('path').resolve('dist/index.js'),t='/usr/local/bin/beaconos';try{require('fs').symlinkSync(s,t);console.log('✔ beaconos linked at '+t)}catch(e){try{require('child_process').execSync('mkdir -p $HOME/.local/bin && ln -sf \\\"'+s+'\\\" $HOME/.local/bin/beaconos');console.log('✔ beaconos linked at ~/.local/bin/beaconos')}catch(e2){console.log('⚠ Run: sudo ln -sf \\\"'+s+'\\\" /usr/local/bin/beaconos')}}\"",
     "dev": "ts-node src/index.ts",
     "start": "node dist/index.js",
