@@ -3,6 +3,7 @@
 import { createServer } from "./commands/create";
 import { showHelp } from "./commands/help";
 import { initProject } from "./commands/init";
+import { handlePackages } from "./commands/packages";
 import { showStatus } from "./commands/status";
 import { showVersion } from "./commands/version";
 
@@ -22,6 +23,11 @@ switch (command) {
 
   case "init":
     initProject();
+    break;
+
+  case "packages":
+  case "pkg":
+    handlePackages(args.slice(1));
     break;
 
   case "status":

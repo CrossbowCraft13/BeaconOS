@@ -14,7 +14,7 @@ def start():
     console.print(
         Panel.fit(
             "[bold cyan]BeaconOS[/bold cyan]\n"
-            "Version 0.1 Alpha",
+            "Version 0.2 Alpha",
             title="Welcome"
         )
     )

@@ -5,7 +5,7 @@
 
 A modern command-line toolkit for creating and managing Minecraft server projects.
 
-> **Current Release:** v0.3.0 Alpha
+> **Current Release:** v0.4.0 Alpha
 
 ---
 
@@ -26,7 +26,7 @@ The long-term goal is to provide an easy-to-use operating system and toolkit cap
 
 ## Features
 
-### v0.3.0 Alpha
+### v0.4.0 Alpha
 
 - Create new BeaconOS server projects
 - Automatically generate project folders
@@ -35,6 +35,9 @@ The long-term goal is to provide an easy-to-use operating system and toolkit cap
 - Modular command architecture
 - Version and Help commands
 - Check server project status
+- **Package Manager** — install, remove, list, and search Minecraft plugins
+- Curated registry of 25+ well-known plugins
+- Direct URL installation support
 
 ---
 
@@ -86,6 +89,15 @@ Create a new server:
 node dist/index.js create MyServer
 ```
 
+Manage packages:
+
+```bash
+node dist/index.js packages list MyServer
+node dist/index.js packages search world
+node dist/index.js packages install MyServer luckperms
+node dist/index.js packages remove MyServer luckperms
+```
+
 ---
 
 ## Example Output
@@ -120,9 +132,29 @@ MyServer/
 BeaconOS/
 ├── src/
 │   ├── commands/
+│   │   ├── create.ts
+│   │   ├── help.ts
+│   │   ├── init.ts
+│   │   ├── packages.ts
+│   │   ├── status.ts
+│   │   └── version.ts
 │   ├── lib/
+│   │   ├── constants.ts
+│   │   ├── filesystem.ts
+│   │   ├── logger.ts
+│   │   ├── package-manager.ts
+│   │   ├── registry.ts
+│   │   └── templates.ts
 │   ├── types/
+│   │   └── config.ts
 │   └── index.ts
+├── beacon/
+│   ├── cli.py
+│   ├── config.py
+│   ├── init.py
+│   ├── installer.py
+│   ├── menu.py
+│   └── utils.py
 ├── package.json
 ├── tsconfig.json
 └── README.md
@@ -137,7 +169,7 @@ BeaconOS/
 | ✅ v0.1 Alpha | CLI Foundation |
 | ✅ v0.2 Alpha | Server Creation |
 | ✅ v0.3 Alpha | Server Management |
-| ⏳ v0.4 Alpha | Package Manager |
+| ✅ v0.4 Alpha | Package Manager |
 | ⏳ v0.5 Beta | Web Dashboard |
 | ⏳ v1.0 Stable | Production Release |
 
