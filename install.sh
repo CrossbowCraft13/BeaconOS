@@ -23,23 +23,23 @@ info() { echo -e "${CYAN}→${NC} $1"; }
 detect_pkg_manager() {
   if   command -v apt-get &>/dev/null; then
     PKG_MANAGER="apt"
-    INSTALL_CMD="apt-get install -y"
-    UPDATE_CMD="apt-get update -qq"
+    INSTALL_CMD="sudo apt-get install -y"
+    UPDATE_CMD="sudo apt-get update -qq"
   elif command -v dnf &>/dev/null; then
     PKG_MANAGER="dnf"
-    INSTALL_CMD="dnf install -y"
+    INSTALL_CMD="sudo dnf install -y"
     UPDATE_CMD=""
   elif command -v yum &>/dev/null; then
     PKG_MANAGER="yum"
-    INSTALL_CMD="yum install -y"
+    INSTALL_CMD="sudo yum install -y"
     UPDATE_CMD=""
   elif command -v pacman &>/dev/null; then
     PKG_MANAGER="pacman"
-    INSTALL_CMD="pacman -S --noconfirm"
+    INSTALL_CMD="sudo pacman -S --noconfirm"
     UPDATE_CMD=""
   elif command -v zypper &>/dev/null; then
     PKG_MANAGER="zypper"
-    INSTALL_CMD="zypper install -y"
+    INSTALL_CMD="sudo zypper install -y"
     UPDATE_CMD=""
   elif [[ "$(uname)" == "Darwin" ]]; then
     PKG_MANAGER="brew"
@@ -100,18 +100,18 @@ install_node() {
       if ! command -v curl &>/dev/null; then
         $INSTALL_CMD curl
       fi
-      curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+      curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
       $INSTALL_CMD nodejs
       ;;
     dnf)
       if command -v dnf module &>/dev/null; then
-        dnf module install -y nodejs:20
+        sudo dnf module install -y nodejs:20
       else
         $INSTALL_CMD nodejs
       fi
       ;;
     yum)
-      curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
+      curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
       $INSTALL_CMD nodejs
       ;;
     pacman)
