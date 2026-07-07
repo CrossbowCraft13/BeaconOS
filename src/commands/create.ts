@@ -1,3 +1,5 @@
+import * as path from "path";
+import * as os from "os";
 import {
   createDirectory,
   writeFile,
@@ -15,37 +17,45 @@ import {
   success
 } from "../lib/logger";
 
-export function createServer(name: string) {
+/** Default directory where server projects are created. */
+const DEFAULT_SERVER_DIR = path.join(os.homedir(), "BeaconServers");
+
+export function createServer(name: string, baseDir?: string) {
 
   if (!name) {
     console.log("Please provide a server name.");
     return;
   }
 
-  if (exists(name)) {
-    console.log(`Server "${name}" already exists.`);
+  const targetDir = baseDir ?? DEFAULT_SERVER_DIR;
+
+  // Ensure the base server directory exists
+  createDirectory(targetDir);
+
+  const projectDir = join(targetDir, name);
+
+  if (exists(projectDir)) {
+    console.log(`Server "${name}" already exists at ${projectDir}.`);
     return;
   }
 
   info("Creating BeaconOS server...");
 
-  createDirectory(name);
-
-  createDirectory(join(name, "plugins"));
-  createDirectory(join(name, "worlds"));
-  createDirectory(join(name, "logs"));
-  createDirectory(join(name, "config"));
-  createDirectory(join(name, "cache"));
+  createDirectory(join(projectDir, "plugins"));
+  createDirectory(join(projectDir, "worlds"));
+  createDirectory(join(projectDir, "logs"));
+  createDirectory(join(projectDir, "config"));
+  createDirectory(join(projectDir, "cache"));
 
   const config = createConfig(name);
 
   writeFile(
-    join(name, "beacon.yml"),
+    join(projectDir, "beacon.yml"),
     config
   );
 
   writeFile(
-    join(name, "README.md"),
+    join(projectDir, "README.md"),
     createReadme(name)
   );
 
@@ -53,4 +63,5 @@ export function createServer(name: string) {
   success("Configuration written");
   success("README generated");
   success("Server ready!");
+  console.log(`  Location: ${projectDir}`);
 }
