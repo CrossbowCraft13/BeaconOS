@@ -18,8 +18,8 @@ describe("showVersion", () => {
     expect(logSpy).toHaveBeenCalledWith(`${APP_NAME} ${VERSION}`);
   });
 
-  it("should print BeaconOS 0.5.0-beta", () => {
+  it("should print BeaconOS 1.0.0", () => {
     showVersion();
-    expect(logSpy).toHaveBeenCalledWith("BeaconOS 0.5.0-beta");
+    expect(logSpy).toHaveBeenCalledWith("BeaconOS 1.0.0");
   });
 });

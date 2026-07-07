@@ -1,212 +1,176 @@
 <img width="2554" height="1265" alt="BeaconOS Social Preview" src="https://github.com/user-attachments/assets/a8895da0-934d-4ac2-bcbe-8a87a1ab1a42" />
 
-
 # BeaconOS
 
-A modern command-line toolkit for creating and managing Minecraft server projects.
+A modern command-line toolkit and web dashboard for creating and managing Minecraft server projects.
 
-> **Current Release:** v0.5.0 Beta
-
----
-
-## About
-
-BeaconOS is an open-source project focused on simplifying Minecraft server management.
-
-The long-term goal is to provide an easy-to-use operating system and toolkit capable of:
-
-- Creating Minecraft server projects
-- Managing multiple servers
-- Installing plugins and packages
-- Monitoring server status
-- Providing a web dashboard
-- Becoming a complete server management platform
+> **Current Release:** v1.0.0
 
 ---
 
 ## Features
 
-### v0.5.0 Beta
+### v1.0 Foundation
 
-- **Web Dashboard** — start a built-in HTTP dashboard to view system status and server projects
-- All features from v0.4.0 Alpha
+BeaconOS provides a complete server management platform:
 
-### v0.4.0 Alpha
+| Feature | Status |
+|---|---|
+| **Server Project Creation** | Create structured Minecraft server projects with one command |
+| **Server Lifecycle** | Start, stop, restart, and kill server processes |
+| **Web Dashboard** | Full SPA dashboard with purple/orange theme, light/dark mode |
+| **Authentication** | JWT-based auth with refresh tokens, user accounts, role-based permissions |
+| **System Monitoring** | Real-time CPU, RAM, Disk, Network monitoring |
+| **Package Manager** | Install plugins from a curated registry of 60+ packages |
+| **File Manager** | Browse, edit, upload, and delete server files via the dashboard |
+| **Settings** | Theme toggle, server defaults, profile management |
+| **Log Viewer** | System and server log viewer with level filtering |
+| **REST API** | Full JSON API backing the dashboard and CLI |
 
-- Create new BeaconOS server projects
-- Automatically generate project folders
-- Generate a default configuration
-- Generate a project README
-- Modular command architecture
-- Version and Help commands
-- Check server project status
-- **Package Manager** — install, remove, list, and search Minecraft plugins
-- Curated registry of 25+ well-known plugins
-- Direct URL installation support
+### Roadmap
+
+- Minecraft server software installation (Paper, Fabric, Forge)
+- Scheduled backups and automatic updates
+- Docker integration
+- Live server console via WebSocket
+- Multi-node cluster management
 
 ---
 
-## Installation
+## Quick Start
 
-Clone the repository:
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/BeaconOS.git
-```
-
-Install dependencies:
-
-```bash
+git clone https://github.com/CrossbowCraft13/BeaconOS.git
+cd BeaconOS
 npm install
-```
-
-Build the project:
-
-```bash
 npm run build
 ```
 
----
-
-## Usage
-
-Display help:
+### Commands
 
 ```bash
-node dist/index.js help
+# Create a new server project
+beaconos create MyServer
+
+# Start the web dashboard
+beaconos dashboard
+# Open http://127.0.0.1:3001
+
+# Create an admin account
+beaconos register admin mypassword
+
+# Log in
+beaconos login admin mypassword
+
+# Start/stop a server
+beaconos server start MyServer
+beaconos server stop MyServer
+
+# Monitor system resources
+beaconos monitor
+
+# Install a plugin
+beaconos packages install MyServer luckperms
+
+# Show status
+beaconos status MyServer
 ```
 
-Display version:
+### Development
 
 ```bash
-node dist/index.js version
-```
-
-Check a server project:
-
-```bash
-node dist/index.js status MyServer
-```
-
-Create a new server:
-
-```bash
-node dist/index.js create MyServer
-```
-
-Manage packages:
-
-```bash
-node dist/index.js packages list MyServer
-node dist/index.js packages search world
-node dist/index.js packages install MyServer luckperms
-node dist/index.js packages remove MyServer luckperms
-```
-
-Start the Web Dashboard:
-
-```bash
-node dist/index.js dashboard
-```
-
-Optional: specify a custom port:
-
-```bash
-node dist/index.js dashboard 8080
+npm run dev       # Run with ts-node
+npm run build     # Compile TypeScript
+npm run test      # Run tests
+npm run test:watch # Watch mode
 ```
 
 ---
 
-## Example Output
+## Architecture
 
 ```
-Creating BeaconOS server...
-
-✓ Folder created
-✓ Configuration written
-✓ README generated
-✓ Server ready!
-```
-
-Generated project:
-
-```
-MyServer/
-├── beacon.yml
-├── README.md
-├── plugins/
-├── worlds/
-├── logs/
-├── config/
-└── cache/
-```
-
----
-
-## Project Structure
-
-```
-BeaconOS/
-├── src/
-│   ├── commands/
-│   │   ├── create.ts
-│   │   ├── dashboard.ts
-│   │   ├── help.ts
-│   │   ├── init.ts
-│   │   ├── packages.ts
-│   │   ├── status.ts
-│   │   └── version.ts
-│   ├── dashboard/
-│   │   └── index.html
-│   ├── lib/
-│   │   ├── constants.ts
-│   │   ├── dashboard-server.ts
-│   │   ├── filesystem.ts
-│   │   ├── logger.ts
-│   │   ├── package-manager.ts
-│   │   ├── registry.ts
-│   │   └── templates.ts
-│   ├── types/
-│   │   └── config.ts
-│   └── index.ts
-├── beacon/
-│   ├── cli.py
-│   ├── config.py
-│   ├── init.py
-│   ├── installer.py
-│   ├── menu.py
-│   └── utils.py
-├── package.json
-├── tsconfig.json
-└── README.md
+src/
+  api/              — Express API server (composition root)
+    middleware/      — JWT auth, error handling
+    routes/         — Auth, servers, monitoring, files, config
+  commands/         — CLI command handlers
+  dashboard/        — Web dashboard SPA
+    css/            — Purple/orange theme
+    js/             — SPA pages (dashboard, servers, files, settings, logs)
+  lib/              — Core services
+    auth.ts         — Authentication (JWT, bcrypt, refresh tokens)
+    config.ts       — ConfigService (centralized path management)
+    server-manager.ts — Server lifecycle orchestration
+    minecraft-process.ts — Java process wrapper
+    monitor.ts      — System resource monitoring
+    monitors/       — CPU, Memory, Disk, Network monitors
+    package-manager.ts — Plugin management
+    registry.ts     — Plugin registry (~60+ packages)
+    logger.ts       — Logging (class-based + standalone functions)
+    filesystem.ts   — File system utilities
+  types/            — TypeScript interfaces
+    config.ts       — Configuration types
+    server.ts       — Server lifecycle types
+    user.ts         — User and auth types
+    api.ts          — API response types
+  beacon/           — Python CLI (installer and interactive menus)
 ```
 
 ---
 
-## Roadmap
+## API Overview
 
-| Version | Milestone |
-|---------|-----------|
-| ✅ v0.1 Alpha | CLI Foundation |
-| ✅ v0.2 Alpha | Server Creation |
-| ✅ v0.3 Alpha | Server Management |
-| ✅ v0.4 Alpha | Package Manager |
-| ✅ v0.5 Beta | Web Dashboard |
-| ⏳ v1.0 Stable | Production Release |
+All endpoints return JSON. Authentication uses `Authorization: Bearer <token>`.
+
+| Endpoint | Description |
+|---|---|
+| `GET /api/health` | Server health check |
+| `POST /api/auth/register` | Create account |
+| `POST /api/auth/login` | Get JWT tokens |
+| `GET /api/auth/me` | Current user profile |
+| `GET /api/servers` | List all servers |
+| `POST /api/servers/:name/start` | Start a server |
+| `POST /api/servers/:name/stop` | Stop a server |
+| `POST /api/servers/:name/kill` | Kill a server process |
+| `GET /api/monitoring/stats` | System resource snapshot |
+| `GET /api/files?server=X&path=Y` | Read/list server files |
+| `GET /api/config` | Read system configuration |
 
 ---
 
 ## Technologies
 
+### Backend
 - TypeScript
 - Node.js
-- npm
+- Express
+- jsonwebtoken / bcryptjs
+
+### Frontend
+- Vanilla JavaScript (SPA, no framework)
+- CSS custom properties (theming)
+
+### Testing
+- Vitest
+- Supertest
+
+### CLI
+- Python (installer)
+- TypeScript (management)
 
 ---
 
 ## Contributing
 
-BeaconOS is currently in active alpha development.
+BeaconOS is currently in active development.
 
 Bug reports, feature suggestions, and pull requests are welcome.
 

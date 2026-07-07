@@ -7,40 +7,62 @@ import { handlePackages } from "./commands/packages";
 import { showStatus } from "./commands/status";
 import { showVersion } from "./commands/version";
 import { startDashboardCommand } from "./commands/dashboard";
+import { handleAuth } from "./commands/auth";
+import { handleServer } from "./commands/server";
+import { handleMonitor } from "./commands/monitor";
 
 const args = process.argv.slice(2);
-
 const command = args[0];
 
 switch (command) {
+  // ── Server Management ────────────────────────────────────────────
   case "create":
     createServer(args[1]);
     break;
 
-  case "dashboard":
-    startDashboardCommand(args[1]);
-    break;
-
-  case "help":
-  case undefined:
-    showHelp();
-    break;
-
-  case "init":
-    initProject();
-    break;
-
-  case "packages":
-  case "pkg":
-    handlePackages(args.slice(1));
+  case "server":
+    handleServer(args.slice(1));
     break;
 
   case "status":
     showStatus(args[1]);
     break;
 
+  case "monitor":
+    handleMonitor();
+    break;
+
+  // ── Packages ─────────────────────────────────────────────────────
+  case "packages":
+  case "pkg":
+    handlePackages(args.slice(1));
+    break;
+
+  // ── Authentication ───────────────────────────────────────────────
+  case "register":
+  case "login":
+  case "logout":
+  case "whoami":
+    handleAuth(args);
+    break;
+
+  // ── Dashboard ────────────────────────────────────────────────────
+  case "dashboard":
+    startDashboardCommand(args[1]);
+    break;
+
+  // ── General ──────────────────────────────────────────────────────
+  case "init":
+    initProject();
+    break;
+
   case "version":
     showVersion();
+    break;
+
+  case "help":
+  case undefined:
+    showHelp();
     break;
 
   default:

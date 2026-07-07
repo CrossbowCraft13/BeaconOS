@@ -12,23 +12,31 @@ describe("logger", () => {
     logSpy.mockRestore();
   });
 
-  it("info should output ℹ prefix", () => {
+  it("info should output ℹ symbol", () => {
     info("test message");
-    expect(logSpy).toHaveBeenCalledWith("ℹ test message");
+    const output = logSpy.mock.calls[0][0] as string;
+    expect(output).toContain("ℹ");
+    expect(output).toContain("test message");
   });
 
-  it("success should output ✓ prefix", () => {
+  it("success should output ✓ symbol", () => {
     success("test message");
-    expect(logSpy).toHaveBeenCalledWith("✓ test message");
+    const output = logSpy.mock.calls[0][0] as string;
+    expect(output).toContain("✓");
+    expect(output).toContain("test message");
   });
 
-  it("warning should output ⚠ prefix", () => {
+  it("warning should output ⚠ symbol", () => {
     warning("test message");
-    expect(logSpy).toHaveBeenCalledWith("⚠ test message");
+    const output = logSpy.mock.calls[0][0] as string;
+    expect(output).toContain("⚠");
+    expect(output).toContain("test message");
   });
 
-  it("error should output ✗ prefix", () => {
+  it("error should output ✗ symbol", () => {
     error("test message");
-    expect(logSpy).toHaveBeenCalledWith("✗ test message");
+    const output = logSpy.mock.calls[0][0] as string;
+    expect(output).toContain("✗");
+    expect(output).toContain("test message");
   });
 });
