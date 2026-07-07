@@ -5,7 +5,7 @@
 
 A modern command-line toolkit for creating and managing Minecraft server projects.
 
-> **Current Release:** v0.4.0 Alpha
+> **Current Release:** v0.5.0 Beta
 
 ---
 
@@ -25,6 +25,11 @@ The long-term goal is to provide an easy-to-use operating system and toolkit cap
 ---
 
 ## Features
+
+### v0.5.0 Beta
+
+- **Web Dashboard** — start a built-in HTTP dashboard to view system status and server projects
+- All features from v0.4.0 Alpha
 
 ### v0.4.0 Alpha
 
@@ -98,6 +103,18 @@ node dist/index.js packages install MyServer luckperms
 node dist/index.js packages remove MyServer luckperms
 ```
 
+Start the Web Dashboard:
+
+```bash
+node dist/index.js dashboard
+```
+
+Optional: specify a custom port:
+
+```bash
+node dist/index.js dashboard 8080
+```
+
 ---
 
 ## Example Output
@@ -133,13 +150,17 @@ BeaconOS/
 ├── src/
 │   ├── commands/
 │   │   ├── create.ts
+│   │   ├── dashboard.ts
 │   │   ├── help.ts
 │   │   ├── init.ts
 │   │   ├── packages.ts
 │   │   ├── status.ts
 │   │   └── version.ts
+│   ├── dashboard/
+│   │   └── index.html
 │   ├── lib/
 │   │   ├── constants.ts
+│   │   ├── dashboard-server.ts
 │   │   ├── filesystem.ts
 │   │   ├── logger.ts
 │   │   ├── package-manager.ts
@@ -170,7 +191,7 @@ BeaconOS/
 | ✅ v0.2 Alpha | Server Creation |
 | ✅ v0.3 Alpha | Server Management |
 | ✅ v0.4 Alpha | Package Manager |
-| ⏳ v0.5 Beta | Web Dashboard |
+| ✅ v0.5 Beta | Web Dashboard |
 | ⏳ v1.0 Stable | Production Release |
 
 ---

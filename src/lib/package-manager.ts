@@ -305,7 +305,7 @@ async function downloadFile(url: string, destPath: string): Promise<void> {
     method: "GET",
     redirect: "follow",
     headers: {
-      "User-Agent": "BeaconOS/0.4",
+      "User-Agent": "BeaconOS/0.5",
     },
   });
 

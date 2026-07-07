@@ -6,6 +6,7 @@ import { initProject } from "./commands/init";
 import { handlePackages } from "./commands/packages";
 import { showStatus } from "./commands/status";
 import { showVersion } from "./commands/version";
+import { startDashboardCommand } from "./commands/dashboard";
 
 const args = process.argv.slice(2);
 
@@ -14,6 +15,10 @@ const command = args[0];
 switch (command) {
   case "create":
     createServer(args[1]);
+    break;
+
+  case "dashboard":
+    startDashboardCommand(args[1]);
     break;
 
   case "help":

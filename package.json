@@ -1,6 +1,6 @@
 {
   "name": "beaconos",
-  "version": "0.4.0-alpha",
+  "version": "0.5.0-beta",
   "description": "An open-source operating system and management platform for Minecraft servers.",
   "author": "CrossbowCraft13",
   "license": "MIT",
@@ -26,13 +26,17 @@
     "beaconos": "dist/index.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node scripts/copy-dashboard-assets.js",
     "dev": "ts-node src/index.ts",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.0"
   }
 }

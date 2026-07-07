@@ -7,6 +7,7 @@ ${APP_NAME} ${VERSION}
 Commands
 
 create <name>      Create a new BeaconOS server
+dashboard [port]   Start the BeaconOS Web Dashboard (default port 3000)
 status [path]      Check a BeaconOS server folder
 init               Initialize BeaconOS
 packages           Manage plugins and packages (install / remove / list / search)
