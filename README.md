@@ -100,6 +100,33 @@ npm link          # ← makes the `beaconos` command available globally
 > equivalent global install step).  Run `npm link` in the project directory,
 > or use `sudo npm link` if you get a permissions error.
 
+### Uninstall
+
+To remove BeaconOS cleanly — unlinks the CLI, deletes the repo, and
+removes the config directory — run the uninstall script:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/CrossbowCraft13/BeaconOS/main/uninstall.sh | bash
+```
+
+Or from a local clone:
+
+```bash
+cd BeaconOS
+chmod +x uninstall.sh
+./uninstall.sh
+```
+
+If you installed via npm:
+
+```bash
+npm uninstall -g beaconos
+rm -rf ~/.beaconos
+```
+
+The uninstall script **will not** remove git, Node.js, npm, or any
+Minecraft servers you created — only BeaconOS itself.
+
 ### Commands
 
 ```bash
