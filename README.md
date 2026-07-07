@@ -4,7 +4,7 @@
 
 A modern command-line toolkit and web dashboard for creating and managing Minecraft server projects.
 
-> **Current Release:** v1.0.0
+> **Current Release:** v1.1.0
 
 ---
 

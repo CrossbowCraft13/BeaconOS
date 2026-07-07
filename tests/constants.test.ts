@@ -14,8 +14,8 @@ describe("constants", () => {
     expect(APP_NAME).toBe("BeaconOS");
   });
 
-  it("VERSION should be 1.0.0", () => {
-    expect(VERSION).toBe("1.0.0");
+  it("VERSION should be 1.1.0", () => {
+    expect(VERSION).toBe("1.1.0");
   });
 
   it("DEFAULT_PORT should be 25565", () => {

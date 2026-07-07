@@ -1,5 +1,5 @@
 export const APP_NAME = "BeaconOS";
-export const VERSION = "1.0.0";
+export const VERSION = "1.1.0";
 
 export const DEFAULT_PORT = 25565;
 export const DEFAULT_MAX_PLAYERS = 20;

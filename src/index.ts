@@ -10,6 +10,7 @@ import { startDashboardCommand } from "./commands/dashboard";
 import { handleAuth } from "./commands/auth";
 import { handleServer } from "./commands/server";
 import { handleMonitor } from "./commands/monitor";
+import { installSoftware } from "./commands/install-software";
 
 const args = process.argv.slice(2);
 const command = args[0];
@@ -36,6 +37,11 @@ switch (command) {
   case "packages":
   case "pkg":
     handlePackages(args.slice(1));
+    break;
+
+  // ── Server Software ──────────────────────────────────────────────
+  case "install-software":
+    installSoftware(args[1], args[2]);
     break;
 
   // ── Authentication ───────────────────────────────────────────────

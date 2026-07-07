@@ -172,7 +172,11 @@ describe("ServerRuntime (with mock process)", () => {
   });
 
   it("should fail to start without a server JAR", async () => {
-    await expect(runtime.start()).rejects.toThrow("No server JAR found");
+    // Mock fetch to fail so the auto-download attempt throws
+    const origFetch = global.fetch;
+    global.fetch = vi.fn().mockRejectedValue(new Error("Network error"));
+    await expect(runtime.start()).rejects.toThrow("No server JAR found and auto-download failed");
+    global.fetch = origFetch;
   });
 
   it("should start with a server JAR present", async () => {

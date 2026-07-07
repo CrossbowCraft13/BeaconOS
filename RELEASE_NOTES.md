@@ -1,13 +1,44 @@
-# BeaconOS v1.0.0 — Foundation Release
+# BeaconOS v1.1.0 — Server Software Auto-Install
 
-> **Tag:** v1.0.0
+> **Tag:** v1.1.0
 > **Released:** 2026-07-07
 
-BeaconOS is a command-line toolkit and web dashboard for creating and managing Minecraft server projects. This is the first stable release.
+BeaconOS is a command-line toolkit and web dashboard for creating and managing Minecraft server projects. This release adds automatic Paper server software download.
 
 ---
 
-## What's New
+## What's New in v1.1
+
+### 🚀 Auto-Download Paper Server
+
+When you run `beaconos server start <name>` for the first time and no server JAR is found, BeaconOS automatically downloads the latest Paper build from the official PaperMC API — no manual setup needed.
+
+```
+beaconos create MyServer
+beaconos server start MyServer
+# → Auto-downloads paper-26.2-10.jar (49.9 MB)
+# → Starts the server
+```
+
+### 📥 Manual Software Install CLI
+
+```
+beaconos install-software MyServer
+```
+
+Downloads the latest Paper JAR into an existing server project. Replaces the existing paper.jar with the latest version.
+
+### 🐛 Bug Fixes
+
+- **create** now places servers in `~/BeaconServers/` (was current directory)
+- **dashboard** no longer renders a blank screen on fresh install
+- **install** script no longer hangs on `sudo npm link` when piped through curl
+- **install** script now uses `sudo` correctly for all package manager commands
+- **Permission denied** error fixed — `dist/index.js` now has the executable bit
+
+---
+
+## v1.0 Foundation (previous release)
 
 ### 🖥️ Web Dashboard
 
@@ -53,11 +84,10 @@ A full single-page application with a purple/orange theme and light/dark mode:
 
 ### 🔧 CLI
 
-18 commands across server management, monitoring, packages, authentication, and the dashboard:
-
 | Command | Description |
 |---|---|
 | `create <name>` | Create a new server project |
+| `install-software <name>` | Download Paper server software |
 | `server list/start/stop/restart/kill/logs` | Server lifecycle management |
 | `status [path]` | Check a server project |
 | `monitor` | Show system resource usage |
@@ -85,11 +115,10 @@ A full single-page application with a purple/orange theme and light/dark mode:
 
 ## Upgrade Notes
 
-### From v0.5.0-beta
+### From v1.0.0
 
 **Breaking changes:**
-- The dashboard now uses Express and runs on port **3001** (was 3000)
-- Some CLI commands have been reorganised under `beaconos server <action>`
+- Server projects created with v1.0's `create` command were placed in the current directory. In v1.1 they go to `~/BeaconServers/`. Move old projects there or use `beaconos status <path>` with an absolute path.
 
 **Data preserved:**
 - `~/.beaconos/` — all user accounts, config, and JWT secrets
@@ -120,25 +149,19 @@ A full single-page application with a purple/orange theme and light/dark mode:
 ## Installation
 
 ```bash
-# Prerequisites: Node.js 18+
-git clone https://github.com/CrossbowCraft13/BeaconOS.git
-cd BeaconOS
-npm install
-npm run build
-
-# Start the dashboard
-beaconos dashboard
-
-# Open http://127.0.0.1:3001
-# Default admin password is printed in the terminal on first launch
+curl -fsSL https://raw.githubusercontent.com/CrossbowCraft13/BeaconOS/main/install.sh | bash
 ```
 
----
+Or via npm:
+
+```bash
+npm install -g beaconos
+```
 
 ## Statistics
 
 - **14 test files**, **139 tests** — all passing
-- **18 CLI commands**
+- **19 CLI commands**
 - **18 API endpoints**
 - **60+ plugins** in the curated registry
 - **~18,000 lines** of TypeScript, CSS, and HTML

@@ -8,8 +8,9 @@ Commands
 
 Server Management
   create <name>            Create a new BeaconOS server
+  install-software <name>  Download server software (Paper) for a server
   server list              List registered servers
-  server start <name>      Start a server
+  server start <name>      Start a server (auto-downloads Paper if missing)
   server stop <name>       Stop a server
   server restart <name>    Restart a server
   server kill <name>       Kill a server

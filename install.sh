@@ -234,7 +234,7 @@ main() {
   link_binary
 
   echo ""
-  log "${BOLD}BeaconOS v1.0.0 is ready.${NC}"
+  log "${BOLD}BeaconOS v1.1.0 is ready.${NC}"
   echo ""
   info "Try these commands:"
   echo "  beaconos help"

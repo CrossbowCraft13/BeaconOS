@@ -60,6 +60,6 @@ describe("showHelp", () => {
     showHelp();
     const output = logSpy.mock.calls[0][0] as string;
     expect(output).toContain("BeaconOS");
-    expect(output).toContain("1.0.0");
+    expect(output).toContain("1.1.0");
   });
 });

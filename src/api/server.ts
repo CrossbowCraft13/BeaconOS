@@ -83,7 +83,7 @@ export function createApp(services?: Partial<AppServices>): {
 
   // ── API routes ───────────────────────────────────────────────────
   app.get("/api/health", (_req, res) => {
-    res.json({ status: "ok", version: "1.0.0" });
+    res.json({ status: "ok", version: "1.1.0" });
   });
 
   app.use("/api/auth", createAuthRouter(auth));
