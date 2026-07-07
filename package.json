@@ -25,8 +25,17 @@
   "bin": {
     "beaconos": "dist/index.js"
   },
+  "files": [
+    "dist/",
+    "beacon/",
+    "scripts/",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
+    "prepare": "npm run build",
     "build": "tsc && node scripts/copy-dashboard-assets.js",
+    "postbuild": "node -e \"try{require('child_process').execSync('npm link',{cwd:process.cwd(),stdio:'pipe'})}catch(e){console.log('⚠  Run \\\"npm link\\\" or \\\"sudo npm link\\\" to make beaconos available globally.')}\"",
     "dev": "ts-node src/index.ts",
     "start": "node dist/index.js",
     "test": "vitest run",

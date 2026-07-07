@@ -40,19 +40,65 @@ BeaconOS provides a complete server management platform:
 
 ## Quick Start
 
-### Prerequisites
+### Install via npm (recommended)
 
-- Node.js 18+
-- npm
+```bash
+npm install -g beaconos
+beaconos help
+```
 
-### Installation
+That's it — `beaconos` is on your PATH and ready to use.
+
+### 🚀 One-line bootstrap (fresh OS)
+
+On a system without Node.js or git, this script installs everything
+automatically:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/CrossbowCraft13/BeaconOS/main/install.sh | bash
+```
+
+Or after cloning:
 
 ```bash
 git clone https://github.com/CrossbowCraft13/BeaconOS.git
 cd BeaconOS
-npm install
-npm run build
+chmod +x install.sh
+./install.sh
 ```
+
+### Manual install
+
+#### Prerequisites
+
+- **Node.js 18+** and **npm** — if missing, the install script above handles
+  them automatically, or install them via your package manager:
+  ```bash
+  # Debian / Ubuntu / Pop!_OS
+  sudo apt-get install -y git nodejs npm
+
+  # Fedora
+  sudo dnf install -y git nodejs npm
+
+  # Arch Linux
+  sudo pacman -S git nodejs npm
+
+  # macOS (Homebrew)
+  brew install git node
+  ```
+
+#### Steps
+
+```bash
+git clone https://github.com/CrossbowCraft13/BeaconOS.git
+cd BeaconOS
+npm install       # also runs the build step automatically (prepare hook)
+npm link          # ← makes the `beaconos` command available globally
+```
+
+> **Note:** The `beaconos` command won't work without `npm link` (or the
+> equivalent global install step).  Run `npm link` in the project directory,
+> or use `sudo npm link` if you get a permissions error.
 
 ### Commands
 
