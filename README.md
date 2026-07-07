@@ -34,6 +34,7 @@ BeaconOS provides a complete server management platform:
 - Docker integration
 - Live server console via WebSocket
 - Multi-node cluster management
+- ***A fully fledged operating system***
 
 ---
 
