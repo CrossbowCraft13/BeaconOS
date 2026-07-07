@@ -21,8 +21,8 @@ const Router = (() => {
       return;
     }
 
-    // Hide all pages
-    document.querySelectorAll(".page").forEach((p) => p.classList.add("hidden"));
+    // Hide app pages (NOT the login page, which also has class "page")
+    document.querySelectorAll("#app-shell .page").forEach((p) => p.classList.add("hidden"));
 
     // Show target page
     const pageEl = document.getElementById("page-" + route.pageId);
