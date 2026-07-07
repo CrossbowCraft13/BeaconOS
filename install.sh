@@ -150,42 +150,38 @@ link_binary() {
     return 0
   fi
 
+  local source="$PWD/dist/index.js"
+  if [ ! -f "$source" ]; then
+    warn "Built binary not found at ${source}. Run 'npm run build' first."
+    return 1
+  fi
+
   info "Linking beaconos command globally…"
 
-  # ── Strategy A: npm link (works with nvm / user-level prefixes) ──
-  if npm link &>/dev/null; then
-    log "beaconos is now available as a global command (npm link)."
-    return 0
+  # ── Strategy A: write to /usr/local/bin via sudo ──
+  #     Uses a single ln -sf call (fast, no npm machinery).
+  #     On a TTY sudo will prompt once; piped stdin → immediate error.
+  local target="/usr/local/bin/beaconos"
+  info "Attempting symlink at ${target}…"
+  if [ -w /usr/local/bin ] || [ "$(id -u)" -eq 0 ]; then
+    ln -sf "$source" "$target" 2>/dev/null && { log "beaconos linked at ${target}."; return 0; }
   fi
-
-  # ── Strategy B: passwordless sudo (sudo -n never prompts) ──
-  if command -v sudo &>/dev/null && sudo -n true 2>/dev/null; then
-    info "Using sudo npm link (passwordless)…"
-    if sudo npm link &>/dev/null; then
-      log "beaconos is now available as a global command (sudo npm link)."
-      return 0
+  if command -v sudo &>/dev/null; then
+    # Try passwordless sudo first (fast fail, no hang)
+    if sudo -n true 2>/dev/null; then
+      sudo ln -sf "$source" "$target" 2>/dev/null && { log "beaconos linked at ${target}."; return 0; }
     fi
+    # Fallback: let sudo prompt (only works with a TTY — fails fast on piped stdin)
+    sudo ln -sf "$source" "$target" 2>/dev/null && { log "beaconos linked at ${target}."; return 0; }
   fi
 
-  # ── Strategy C: direct symlink via sudo (single password prompt) ──
-  #    Instead of hanging on an invisible sudo prompt, use a single
-  #    ln -sf call.  On a TTY sudo will ask once; piped stdin → error
-  #    immediately instead of hanging.
-  local npm_bin
-  npm_bin="$(npm bin -g 2>/dev/null || echo /usr/local/bin)"
-  info "Attempting symlink in ${npm_bin}…"
-  if sudo ln -sf "$PWD/dist/index.js" "$npm_bin/beaconos" 2>/dev/null; then
-    log "beaconos linked at ${npm_bin}/beaconos."
-    return 0
-  fi
-
-  # ── Strategy D: user-local bin (no sudo needed) ──
-  info "Falling back to ~/.local/bin/beaconos…"
+  # ── Strategy B: user-local bin (no sudo needed) ──
+  local user_target="$HOME/.local/bin/beaconos"
+  info "Falling back to ${user_target}…"
   mkdir -p "$HOME/.local/bin"
-  if ln -sf "$PWD/dist/index.js" "$HOME/.local/bin/beaconos"; then
-    # Ensure ~/.local/bin is on PATH
+  if ln -sf "$source" "$user_target"; then
     if ! [[ ":$PATH:" == *":$HOME/.local/bin:"* ]]; then
-      warn "Add ~/.local/bin to your PATH in ~/.bashrc or ~/.zshrc:"
+      warn "Add this to your ~/.bashrc or ~/.zshrc:"
       echo "  export PATH=\"\$HOME/.local/bin:\$PATH\""
     fi
     log "beaconos linked at ~/.local/bin/beaconos."
@@ -194,8 +190,8 @@ link_binary() {
 
   # ── All strategies exhausted ──
   warn "Could not link beaconos automatically."
-  warn "Run this command manually once you're in the BeaconOS directory:"
-  echo "  sudo npm link"
+  echo "Run this command (from the BeaconOS directory):"
+  echo "  sudo ln -sf \"\$PWD/dist/index.js\" /usr/local/bin/beaconos"
   return 1
 }
 
