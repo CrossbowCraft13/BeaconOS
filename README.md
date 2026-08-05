@@ -92,13 +92,14 @@ chmod +x install.sh
 ```bash
 git clone https://github.com/CrossbowCraft13/BeaconOS.git
 cd BeaconOS
-npm install       # also runs the build step automatically (prepare hook)
-npm link          # ← makes the `beaconos` command available globally
+npm install       # installs dependencies and builds automatically (prepare hook)
+npm link          # makes the `beaconos` command available globally
 ```
 
-> **Note:** The `beaconos` command won't work without `npm link` (or the
-> equivalent global install step).  Run `npm link` in the project directory,
-> or use `sudo npm link` if you get a permissions error.
+> **Note:** Installing dependencies builds the project but does not modify
+> global system directories. Run `npm link` in the project directory to make
+> the `beaconos` command available globally, or use your package manager's
+> supported global install flow.
 
 ### Uninstall
 
